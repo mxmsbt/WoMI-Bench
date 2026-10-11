@@ -85,7 +85,7 @@ Use [CITATION.cff](CITATION.cff) to cite this protocol release. Cite each upstre
   year = {2026},
   version = {0.1.0},
   howpublished = {Public protocol specification},
-  url = {https://github.com/score-technologies/WoMI-Bench}
+  url = {https://github.com/mxmsbt/WoMI-Bench}
 }
 ```
 

@@ -6,8 +6,8 @@ authors:
     website: "https://github.com/score-technologies"
 version: 0.1.0
 date-released: 2026-10-11
-url: "https://github.com/score-technologies/WoMI-Bench"
-repository-code: "https://github.com/score-technologies/WoMI-Bench"
+url: "https://github.com/mxmsbt/WoMI-Bench"
+repository-code: "https://github.com/mxmsbt/WoMI-Bench"
 license: MIT
 abstract: >-
   An open evaluation framework for world generation, reconstruction,

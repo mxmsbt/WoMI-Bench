@@ -5,7 +5,7 @@
   "maintainer": "Score Technologies",
   "version": "0.1.0",
   "release_kind": "protocol_and_research_scope",
-  "repository": "https://github.com/score-technologies/WoMI-Bench",
+  "repository": "https://github.com/mxmsbt/WoMI-Bench",
   "capabilities": ["generation", "reconstruction", "persistence", "editing", "dynamics"],
   "world_engine_operations": ["create", "render", "observe", "edit", "step", "export"],
   "evidence_tracks": [
