@@ -4,7 +4,7 @@
 
 An open evaluation framework for worlds that can be generated, reconstructed, remembered, edited and advanced through time.
 
-Developed and maintained by **[Score Technologies](https://github.com/score-technologies)**.
+Developed and maintained by **[Maxime Sebti](https://github.com/mxmsbt)**.
 
 [Protocol](docs/protocol.md) · [Machine-readable specification](protocol/womi-bench-v0.1.0.json) · [Reporting contract](docs/reporting.md) · [Contributing](CONTRIBUTING.md) · [Citation](CITATION.cff)
 
