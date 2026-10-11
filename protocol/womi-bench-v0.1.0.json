@@ -1,0 +1,35 @@
+{
+  "document_type": "protocol_specification",
+  "name": "WoMI-Bench",
+  "expanded_name": "World Model Index Benchmark",
+  "maintainer": "Score Technologies",
+  "version": "0.1.0",
+  "release_kind": "protocol_and_research_scope",
+  "repository": "https://github.com/score-technologies/WoMI-Bench",
+  "capabilities": ["generation", "reconstruction", "persistence", "editing", "dynamics"],
+  "world_engine_operations": ["create", "render", "observe", "edit", "step", "export"],
+  "evidence_tracks": [
+    "established_public_evaluations",
+    "matched_world_model_comparisons",
+    "fresh_prospective_worlds"
+  ],
+  "upstream_references": [
+    {"name": "WorldScore", "url": "https://haoyi-duan.github.io/WorldScore/"},
+    {"name": "Physics-IQ", "url": "https://github.com/google-deepmind/physics-IQ-benchmark"}
+  ],
+  "prospective_protocol": {
+    "prediction_block_frames": 10,
+    "frame_rate": "declared_per_study",
+    "feedback_conditions": ["every_block", "every_ten_blocks", "open_loop"],
+    "commit_predictions_before_outcome_reveal": true,
+    "truth_sources": ["independent_simulator_state", "independently_observed_outcomes"],
+    "learned_predictions_alone_are_ground_truth": false,
+    "discovery_and_confirmation_worlds_are_disjoint": true
+  },
+  "statistical_unit": "independent_world_or_capture",
+  "retain_failed_attempts": true,
+  "require_independent_metric_replay": true,
+  "cross_track_aggregate": null,
+  "includes_execution_harness": false,
+  "includes_measured_results": false
+}

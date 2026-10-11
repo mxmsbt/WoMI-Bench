@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use the WoMI-Bench protocol, cite this release and the upstream benchmarks used in your study."
+title: "WoMI-Bench: World Model Index Benchmark"
+authors:
+  - name: "Score Technologies"
+    website: "https://github.com/score-technologies"
+version: 0.1.0
+date-released: 2026-10-11
+url: "https://github.com/score-technologies/WoMI-Bench"
+repository-code: "https://github.com/score-technologies/WoMI-Bench"
+license: MIT
+abstract: >-
+  An open evaluation framework for world generation, reconstruction,
+  persistence, editing and dynamics. This protocol release specifies
+  matched comparisons, prospective prediction before outcome revelation,
+  independent evidence replay and capability-level reporting.
+keywords:
+  - world models
+  - spatial intelligence
+  - evaluation
+  - benchmark
+  - computer vision
+  - reproducibility

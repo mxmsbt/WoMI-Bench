@@ -1,0 +1,17 @@
+WoMI-Bench — World Model Index Benchmark
+Copyright (c) 2026 Score Technologies
+
+This repository is the public home of the WoMI-Bench evaluation framework
+and protocol maintained by Score Technologies.
+
+WorldScore and Physics-IQ are independent projects referenced for their
+evaluation tasks. Their names, methods, source code, datasets and results
+remain attributable to their respective authors and subject to their own
+licenses. No upstream source code, dataset or model weights are distributed
+in this protocol release. Citation does not imply endorsement.
+
+WorldScore: https://haoyi-duan.github.io/WorldScore/
+Physics-IQ: https://github.com/google-deepmind/physics-IQ-benchmark
+
+The MIT License applies to original material in this repository; it does
+not relicense separately obtained benchmarks, datasets or model artifacts.
