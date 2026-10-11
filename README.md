@@ -1,92 +1,83 @@
 # WoMI-Bench
 
-**World Model Index Benchmark**
+**World Model Index Benchmark — measuring whether predictions describe a coherent world.**
 
-An open evaluation framework for worlds that can be generated, reconstructed, remembered, edited and advanced through time.
+An independent research project created and maintained by **[Maxime Sebti](https://github.com/mxmsbt)**. Open to contributions from researchers building spatial, generative and predictive models.
 
-Developed and maintained by **[Maxime Sebti](https://github.com/mxmsbt)**.
+[Results & examples](https://mxmsbt.github.io/WoMI-Bench/) · [Quickstart](docs/quickstart.md) · [Metrics](docs/metrics.md) · [Submit a model](docs/submission.md) · [Research protocol](docs/protocol.md) · [Governance](GOVERNANCE.md)
 
-[Protocol](docs/protocol.md) · [Machine-readable specification](protocol/womi-bench-v0.1.0.json) · [Reporting contract](docs/reporting.md) · [Contributing](CONTRIBUTING.md) · [Citation](CITATION.cff)
+## Why worlds need different tests
 
-## Why evaluate worlds?
+A compelling image describes an appearance. A useful world model must also predict another viewpoint, recover spatial structure, return to a consistent scene, preserve what an edit should leave alone, and anticipate what changes over time.
 
-A compelling frame answers what a scene looks like. A useful world model must also answer what is behind an object, what remains when the camera returns, what changes after an intervention, and what happens next.
+WoMI-Bench makes these questions explicit and their measurements replayable. The research goal is to distinguish visual plausibility from **spatial accuracy, persistence, controlled change and prediction**. Those capabilities matter for simulation, interactive creation, robotics and the generation of training data for vision systems. Claims about better training data require transfer tests on independent real tasks.
 
-WoMI-Bench asks whether those answers describe **one coherent world**. Its goal is to make progress in spatial intelligence measurable through controlled experiments, matched model comparisons and independently replayable evidence.
+## Run it
 
-That matters for simulation, interactive creation, robotics and future vision-model training. Worlds with grounded geometry, state and dynamics can support controlled variation and supervision. Their value for training must ultimately be tested on held-out real observations and tasks.
+Python 3.10+; the calibration run uses a CPU and downloads no model weights.
 
-## Five capabilities
-
-| Capability | Central question | Evidence to retain |
-| --- | --- | --- |
-| **Generation** | Can a model create a world and follow requested viewpoints and content? | Inputs, camera paths, rendered sequences, quality and controllability measurements |
-| **Reconstruction** | Does the recovered scene agree with observed geometry? | Calibrated observations, predicted geometry, independent targets and validity masks |
-| **Persistence** | Does the same world survive revisits, occlusion and new observations? | Linked states, revisit sequences, identity and geometry consistency measurements |
-| **Editing** | Does an intervention change its intended target while preserving the rest? | Parent/child states, edit requests, affected regions and subsequent views |
-| **Dynamics** | Does the model predict the consequences of time and actions? | Observation prefixes, actions, forecast trajectories and independently grounded outcomes |
-
-Every comparison also reports coverage, failures, uncertainty, latency, memory and cost. A geometry component and a complete interactive world engine belong in explicitly different comparison scopes.
-
-## One framework, distinct measurements
-
-WoMI-Bench combines three complementary forms of evidence:
-
-1. **Established public evaluations.** Retain the names, versions and scoring definitions of upstream benchmarks, including [WorldScore](https://haoyi-duan.github.io/WorldScore/) for world generation and [Physics-IQ](https://github.com/google-deepmind/physics-IQ-benchmark) for physical video prediction. Add explicitly specified posed-reconstruction studies.
-2. **Matched world-model comparisons.** Run compatible systems on the same frozen inputs, trajectories, interventions and declared resource budgets. Compare retained outputs under the same evaluator.
-3. **Fresh prospective worlds.** Freeze the model first, then evaluate forecasts against independently generated or observed outcomes withheld from its runtime.
-
-Results remain a capability profile. This specification defines **no cross-track aggregate or universal leaderboard score**: a strong render should not conceal failed geometry, memory or dynamics.
-
-## Predict before reveal
-
-```mermaid
-flowchart LR
-    A[Freeze model and protocol] --> B[Observe current world]
-    B --> C[Commit next 10 frames]
-    C --> D[Reveal independent outcome]
-    D --> E[Score and retain evidence]
-    E --> F[Apply scheduled feedback]
-    F --> B
+```bash
+git clone https://github.com/mxmsbt/WoMI-Bench.git
+cd WoMI-Bench
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install .
+womi demo --output runs/calibration --worlds 8
 ```
 
-The prospective track uses ten-frame forecast blocks. Predictions or failures must be committed before the corresponding outcomes are revealed. Observation-every-block, observation-every-ten-blocks and open-loop conditions are reported separately. Frame rate and physical time are explicit; ten frames does not imply real-time inference.
+Open `runs/calibration/last-frame/report/report.html`. Each report includes task metrics, per-world uncertainty, coverage, raw JSON/CSV and fixed-case visual comparisons. The demo produces **40 cases across eight analytic worlds**, scores three simple controls and replays every report.
 
-Ground truth comes from independently controlled simulator state or observed outcomes. A second learned model's prediction is not automatically ground truth. Cryptographic commitments make later changes detectable against a trusted anchor; they do not establish physical correctness or prevent every form of leakage.
+**These are synthetic calibration results, not learned-model scores.** They test the evaluator, expose shortcuts and show how evidence is reported. No trained model is ranked in this release. [Dataset card](docs/data-card.md) · [Release scope](docs/release-0.2.0.md)
 
-## Scientific contract
+## Participate in the capability you support
 
-- Freeze model versions, inputs, evaluator definitions, sample counts, feedback schedules and resource limits before a confirmatory run.
-- Separate challenge discovery and metric calibration from independent confirmation worlds.
-- Keep every assigned case in the coverage record; retain failed and interrupted attempts.
-- Treat independent worlds or captures as the statistical units, accounting for correlated frames and repeated views.
-- Publish paired uncertainty, failure analysis and compute alongside scores.
-- Recompute metrics from retained raw predictions and targets on an independent host.
-- Test shortcuts, distribution shift and agreement with held-out human or physical evidence.
+You do not need a particular world engine or a six-operation interface. A submission can target one capability; unsupported capabilities stay unmeasured. Compatible models use the same frozen task manifest.
 
-See the [protocol](docs/protocol.md) and [reporting contract](docs/reporting.md) for the required study record.
+| Task in the executable v0.2 protocol | Required output | Current measurements |
+| --- | --- | --- |
+| Spatial views | RGB at declared query cameras | Pixel MAE and capped PSNR |
+| Geometry | Camera-Z depth in meters at observed cameras | Bounded relative depth error; no target-fitted scale |
+| Return-view persistence | RGB along a path returning to its start | Target agreement and return-view drift |
+| Appearance editing | RGB after a masked appearance edit | Intended-region error and preservation error, separately |
+| Dynamics | Future RGB after an observation prefix | Image, foreground and temporal-change errors |
 
-## Public release
+These are transparent **diagnostics**. Pixel similarity alone is not perceptual quality or physical understanding; return-view agreement alone is not proof of retained state. Each has documented failure modes and controls. See the [metric definitions](docs/metrics.md).
 
-**v0.1.0 is the protocol and research-scope release.** It contains the benchmark definition, reporting requirements, citation metadata and attribution. It does not distribute an execution harness, model weights, evaluation datasets or benchmark results.
+Models connect through a small Python adapter or a portable prediction bundle. Output bridges cover the documented depth formats of MapAnything, Pi3/Pi3X and Depth Anything 3; they do not claim those models have been run. [Adapter guide](docs/adapters.md)
 
-Versioned implementation and measurement releases must identify exactly which parts of this specification they execute. New metrics or aggregate formulas require an explicit version change and evidence supporting their interpretation.
+## Evidence before ranking
 
-## Attribution and citation
+- Separate public observations from evaluator targets; score saved arrays without executing candidate code.
+- Freeze case inventories, model revisions, permitted inputs and resource policies before a measured campaign.
+- Retain every assigned case. Failed, missing and invalid predictions receive explicit worst-case diagnostic penalties.
+- Average within each world, then equally across worlds. Compare systems with paired world-level uncertainty.
+- Bind inputs, outputs, targets and evaluator source to content hashes. Replay measurements from the raw evidence.
+- Report scope and verification status. A local hash check is not independent attestation or proof against leakage.
 
-**WoMI-Bench** names Score Technologies' evaluation framework and protocol. Integrated benchmarks, datasets, models and evaluators retain their original names, authorship and licenses. Our framework does not transfer ownership of those contributions or imply endorsement by their authors. See [NOTICE](NOTICE).
+There is **no universal WoMI score**. Results remain a capability profile. A geometry component and an interactive world engine are different scopes; neither inherits results from the other.
 
-Use [CITATION.cff](CITATION.cff) to cite this protocol release. Cite each upstream benchmark separately when reporting its measurements.
+The public site separates calibration controls from model submissions. Admission requires review of a campaign's evidence, licenses, attempts, compute, limitations and independent replay. Cost is unknown unless recorded; the runner's timing is not a hardware-normalized leaderboard. [Reporting contract](docs/reporting.md) · [Submission process](docs/submission.md)
+
+## Research direction
+
+The broader protocol defines prospective prediction before reveal: freeze a model, commit its next forecast, reveal an independently grounded outcome, then score it. It also calls for controlled interventions, longer revisits, distribution shifts and downstream transfer studies.
+
+The executable v0.2 release implements the offline contracts above. Live forecast commitments, stateful engine qualification, large real-world datasets and validated perceptual/physics measures are separate research milestones, not inferred from calibration success. [Roadmap and adoption criteria](docs/roadmap.md)
+
+Studies using [WorldScore](https://haoyi-duan.github.io/WorldScore/) or [Physics-IQ](https://github.com/google-deepmind/physics-IQ-benchmark) must retain their original names, versions, licenses and scoring definitions. WoMI-Bench does not rebrand their results or imply their authors' endorsement.
+
+## Contribute and cite
+
+The most useful contributions are a reproducible model submission, a licensed grounded dataset, a metric-validation study, or a demonstrated shortcut. Protocol changes happen through public issues and versioned releases. [Contributing](CONTRIBUTING.md) · [Governance and conflicts](GOVERNANCE.md)
 
 ```bibtex
-@misc{scoretechnologies2026womibench,
-  author = {{Score Technologies}},
+@software{sebti2026womibench,
+  author = {Sebti, Maxime},
   title = {{WoMI-Bench}: World Model Index Benchmark},
   year = {2026},
-  version = {0.1.0},
-  howpublished = {Public protocol specification},
+  version = {0.2.0},
   url = {https://github.com/mxmsbt/WoMI-Bench}
 }
 ```
 
-Original repository content is available under the [MIT License](LICENSE).
+[CITATION.cff](CITATION.cff) · [MIT License](LICENSE) · [Upstream attribution](NOTICE)

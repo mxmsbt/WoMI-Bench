@@ -30,4 +30,6 @@ Retain upstream benchmark aggregates only within their original definitions. Do 
 
 Release permitted raw evidence, commands, source/dependency locks and a disjoint replay sample. Withheld active evaluation targets must stay outside public artifacts until retirement. Report the reason and mechanism for any restricted evidence access.
 
-This protocol release contains no model result table. Subsequent measured reports must supply the evidence above before making comparative claims.
+The executable v0.2 report supplies case/task metrics, coverage, world-level intervals, source and file hashes, and submitter-reported timing/cost where available. It does not automatically establish isolation, hardware identity, peak memory, dataset independence, an anchored commitment or third-party verification. A model submission must attach a campaign card supplying those additional details. Missing evidence remains explicit.
+
+The public examples contain analytic calibration controls only. A CI replay on a separate runner demonstrates cross-host metric reproducibility for those controls, not independent scientific validation or learned-model qualification.

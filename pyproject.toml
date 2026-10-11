@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "womi-bench"
+version = "0.2.0"
+description = "Independent, evidence-first evaluation tools for world models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{name = "Maxime Sebti"}]
+dependencies = ["numpy>=1.26,<3", "Pillow>=10,<13"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+womi = "womi.cli:main"
+
+[project.urls]
+Repository = "https://github.com/mxmsbt/WoMI-Bench"
+Documentation = "https://github.com/mxmsbt/WoMI-Bench/tree/main/docs"
+Issues = "https://github.com/mxmsbt/WoMI-Bench/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

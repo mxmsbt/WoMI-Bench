@@ -1,0 +1,22 @@
+name: Protocol or metric proposal
+description: Propose a versioned scientific change with validation evidence.
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: Question, proposed change and affected versions
+    validations:
+      required: true
+  - type: textarea
+    id: validity
+    attributes:
+      label: Validity, controls and possible shortcuts
+      description: Definition, units, direction, failure behavior, independent unit and human/physical validation.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence, reproduction and conflicts
+    validations:
+      required: true

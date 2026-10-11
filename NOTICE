@@ -1,17 +1,24 @@
 WoMI-Bench — World Model Index Benchmark
-Copyright (c) 2026 Score Technologies
+Copyright (c) 2026 Maxime Sebti
 
-This repository is the public home of the WoMI-Bench evaluation framework
-and protocol maintained by Score Technologies.
+An independent research project maintained by Maxime Sebti.
+The current evaluator, analytic fixture generator, documentation and site
+are original material distributed under MIT. Historical releases retain
+their recorded metadata; v0.2.0 supersedes v0.1.0's project attribution.
 
-WorldScore and Physics-IQ are independent projects referenced for their
-evaluation tasks. Their names, methods, source code, datasets and results
-remain attributable to their respective authors and subject to their own
-licenses. No upstream source code, dataset or model weights are distributed
-in this protocol release. Citation does not imply endorsement.
-
+WorldScore and Physics-IQ are separately authored benchmarks referenced
+in the research protocol. No upstream evaluator code or datasets from
+these projects are included. Their measurements must retain their own
+names, versions and citations. Mention does not imply endorsement.
 WorldScore: https://haoyi-duan.github.io/WorldScore/
 Physics-IQ: https://github.com/google-deepmind/physics-IQ-benchmark
 
-The MIT License applies to original material in this repository; it does
-not relicense separately obtained benchmarks, datasets or model artifacts.
+Depth-output bridges follow publicly documented array conventions:
+MapAnything: https://github.com/facebookresearch/map-anything
+Pi3/Pi3X: https://github.com/yyfz/Pi3
+Depth Anything 3: https://github.com/ByteDance-Seed/Depth-Anything-3
+No model implementation, checkpoint or restricted dataset is bundled.
+Model code, weights and datasets can have different licenses. Their
+separate licenses remain applicable and are not replaced by this MIT license.
+
+NumPy, Pillow and development/build tools retain their respective licenses.

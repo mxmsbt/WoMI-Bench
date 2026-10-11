@@ -1,0 +1,35 @@
+name: Model or study submission
+description: Propose a reproducible capability measurement.
+title: "[Submission] "
+body:
+  - type: markdown
+    attributes:
+      value: "Read docs/submission.md first. Do not attach credentials or active private targets."
+  - type: textarea
+    id: identity
+    attributes:
+      label: Investigators, affiliations and conflicts
+      description: Include any relationship to the model or its developers.
+    validations:
+      required: true
+  - type: textarea
+    id: campaign
+    attributes:
+      label: Campaign and frozen identities
+      description: Task, model/API/checkpoint, adapter, evaluator, dataset, licenses, scope and analysis plan.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence, coverage and compute
+      description: Link outputs, receipts, all attempts/failures, hardware, settings, timing/cost and target provenance.
+    validations:
+      required: true
+  - type: textarea
+    id: replay
+    attributes:
+      label: Replay and limitations
+      description: Reproduction commands, separate-host evidence if available, isolation, unknowns and known shortcuts.
+    validations:
+      required: true

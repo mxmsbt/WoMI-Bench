@@ -5,3 +5,9 @@
 *.key
 __pycache__/
 .venv/
+.build/
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+runs/

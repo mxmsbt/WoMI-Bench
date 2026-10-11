@@ -1,0 +1,8 @@
+*
+!requirements-eval.txt
+!pyproject.toml
+!README.md
+!LICENSE
+!NOTICE
+!src/
+!src/**

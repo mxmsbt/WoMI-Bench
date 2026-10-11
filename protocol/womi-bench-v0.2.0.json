@@ -1,0 +1,19 @@
+{
+  "name": "WoMI-Bench",
+  "long_name": "World Model Index Benchmark",
+  "version": "0.2.0",
+  "maintainer": "Maxime Sebti",
+  "ownership": "independent research project",
+  "repository": "https://github.com/mxmsbt/WoMI-Bench",
+  "implementation": "offline array diagnostics",
+  "tasks": ["spatial", "geometry", "persistence", "editing", "dynamics"],
+  "schemas": ["womi.dataset.v1", "womi.targets.v1", "womi.submission.v1", "womi.report.v1", "womi.comparison.v1"],
+  "schema_authority": "src/womi/contracts.py",
+  "default_fixture": {"id": "analytic-rooms-v1", "worlds": 8, "cases": 40, "scope": "synthetic_diagnostic", "license": "MIT"},
+  "controls": ["last-frame", "linear-pixels", "black"],
+  "aggregate": null,
+  "statistics": {"unit": "world", "weight": "equal", "bootstrap_samples": 2000, "seed": 1729, "interval": "percentile_95_descriptive_uncorrected"},
+  "model_results": [],
+  "not_implemented": ["secure model execution", "live pre-reveal commitments", "stateful engine qualification", "independent human review service"],
+  "licenses": "MIT for original code and fixtures; external assets retain their own licenses"
+}

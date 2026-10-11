@@ -1,0 +1,16 @@
+name: Reproducibility or software issue
+description: Report a concrete failure or inconsistent measurement.
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Version, environment and reproduction steps
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and observed behavior
+      description: Include small licensed examples; no secrets or private targets.
+    validations:
+      required: true

@@ -1,8 +1,8 @@
 # WoMI-Bench protocol
 
-Protocol version: **0.1.0**. Maintainer: **Score Technologies**.
+Research protocol: **0.2.0**. Maintainer: **Maxime Sebti**, independent contributor.
 
-This document defines study requirements. It is not an execution receipt or evidence that a model has passed them. The [machine-readable specification](../protocol/womi-bench-v0.1.0.json) records the corresponding scope.
+This document defines the research agenda and study requirements. It is not an execution receipt. The [executable contracts](contracts.md) and [v0.2 specification](../protocol/womi-bench-v0.2.0.json) identify implemented features; the broader live and stateful studies below require additional execution infrastructure. The v0.1 specification is retained as a historical record.
 
 ## 1. Declare the comparison
 
